@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>STRENGTH TRACK | Gym Workout Logger</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-  
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -44,25 +43,24 @@
       }
     }
   </script>
-  
   <style>
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(10px); }
       to { opacity: 1; transform: translateY(0); }
     }
-    
+
     .animate-fadeIn {
       animation: fadeIn 0.3s ease-out forwards;
     }
-    
+
     input:focus, select:focus {
       box-shadow: 0 0 0 3px rgba(255, 194, 0, 0.3);
     }
-    
+
     .mobile-visible {
       display: block;
     }
-    
+
     @media (min-width: 768px) {
       .mobile-visible {
         display: none;
@@ -82,11 +80,9 @@
         </div>
         <h1 class="text-2xl font-bold text-white tracking-tight">STRENGTH TRACK</h1>
       </div>
-      <span class="text-xs font-medium px-2 py-1 rounded bg-dark-700 text-primary-400">
-        v1.0.0
-      </span>
+      <span class="text-xs font-medium px-2 py-1 rounded bg-dark-700 text-primary-400">v1.0.0</span>
     </header>
-    
+
     <!-- Two-column layout -->
     <div class="md:grid md:grid-cols-2 md:gap-8">
       <!-- Form Section -->
@@ -97,61 +93,139 @@
           </svg>
           New Workout
         </h2>
-        
+
         <form id="workoutForm" class="space-y-4">
           <div>
             <label class="block text-sm font-medium text-dark-300 mb-1">Date</label>
-            <input type="date" id="date" 
-                   class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
+            <input type="date" id="date"
+              class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent">
           </div>
-          
+
           <div>
             <label class="block text-sm font-medium text-dark-300 mb-1">Workout Day</label>
             <select id="workoutDay" onchange="updateExercises()"
-                    class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
+              class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
               <option value="">Select training split</option>
               <option value="PUSH">PPL - Push</option>
               <option value="PULL">PPL - Pull</option>
               <option value="LEGS">PPL - Legs</option>
             </select>
           </div>
-          
+
           <div>
             <label class="block text-sm font-medium text-dark-300 mb-1">Exercise</label>
             <select id="exercise" disabled
-                    class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none cursor-not-allowed">
+              class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none cursor-not-allowed">
               <option value="">Select workout day first</option>
             </select>
           </div>
-          
+
           <div class="grid grid-cols-3 gap-4">
             <div>
               <label class="block text-sm font-medium text-dark-300 mb-1">Sets</label>
-              <input id="sets" type="number" min="1" 
-                     class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
+              <input id="sets" type="number" min="1"
+                class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
             </div>
             <div>
               <label class="block text-sm font-medium text-dark-300 mb-1">Reps</label>
-              <input id="reps" type="number" min="1" 
-                     class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
+              <input id="reps" type="number" min="1"
+                class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
             </div>
             <div>
               <label class="block text-sm font-medium text-dark-300 mb-1">Weight (kg)</label>
-              <input id="weight" type="number" min="0" step="0.1" 
-                     class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
+              <input id="weight" type="number" min="0" step="0.1"
+                class="w-full bg-dark-700 border border-dark-600 rounded-lg px-3 py-2 text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent appearance-none">
             </div>
           </div>
-          
+
           <button type="button" onclick="addEntry()"
-                  class="w-full mt-6 bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold py-3 px-4 rounded-lg hover:from-primary-600 hover:to-primary-800 transition-all duration-200 active:scale-[0.98] shadow-lg">
+            class="w-full mt-6 bg-gradient-to-r from-primary-500 to-primary-700 text-white font-semibold py-3 px-4 rounded-lg hover:from-primary-600 hover:to-primary-800 transition-all duration-200 active:scale-[0.98] shadow-lg">
             Log Workout
           </button>
         </form>
       </section>
-      
+
       <!-- Log Section -->
       <section class="bg-dark-800 rounded-xl p-6 shadow-lg animate-fadeIn" style="animation-delay: 0.1s">
         <div class="flex items-center justify-between mb-6">
           <h2 class="text-xl font-bold text-white flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-primary-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h13M3 7h13M3 17h6" />
+            </svg>
+            Logged Workouts
+          </h2>
+        </div>
+        <div id="logContainer" class="space-y-4 text-sm text-white">
+          <!-- Logged entries will appear here -->
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    const exerciseOptions = {
+      PUSH: ["Bench Press", "Overhead Press", "Triceps Pushdown"],
+      PULL: ["Pull-up", "Barbell Row", "Bicep Curl"],
+      LEGS: ["Squat", "Leg Press", "Calf Raise"]
+    };
+
+    function updateExercises() {
+      const workoutDay = document.getElementById("workoutDay").value;
+      const exerciseSelect = document.getElementById("exercise");
+
+      exerciseSelect.innerHTML = "";
+
+      if (!workoutDay || !exerciseOptions[workoutDay]) {
+        exerciseSelect.disabled = true;
+        exerciseSelect.classList.add("cursor-not-allowed");
+        const defaultOption = document.createElement("option");
+        defaultOption.value = "";
+        defaultOption.textContent = "Select workout day first";
+        exerciseSelect.appendChild(defaultOption);
+        return;
+      }
+
+      exerciseSelect.disabled = false;
+      exerciseSelect.classList.remove("cursor-not-allowed");
+
+      const defaultOption = document.createElement("option");
+      defaultOption.value = "";
+      defaultOption.textContent = "Select an exercise";
+      exerciseSelect.appendChild(defaultOption);
+
+      exerciseOptions[workoutDay].forEach(exercise => {
+        const option = document.createElement("option");
+        option.value = exercise;
+        option.textContent = exercise;
+        exerciseSelect.appendChild(option);
+      });
+    }
+
+    function addEntry() {
+      const date = document.getElementById("date").value;
+      const workoutDay = document.getElementById("workoutDay").value;
+      const exercise = document.getElementById("exercise").value;
+      const sets = document.getElementById("sets").value;
+      const reps = document.getElementById("reps").value;
+      const weight = document.getElementById("weight").value;
+
+      if (!date || !workoutDay || !exercise || !sets || !reps || !weight) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      const logContainer = document.getElementById("logContainer");
+      const entry = document.createElement("div");
+      entry.classList.add("bg-dark-700", "rounded", "p-3", "shadow", "border", "border-dark-600");
+      entry.innerHTML = `
+        <div><strong>${date}</strong> - <em>${workoutDay}</em></div>
+        <div>${exercise}: ${sets} sets x ${reps} reps @ ${weight}kg</div>
+      `;
+      logContainer.prepend(entry);
+
+      document.getElementById("workoutForm").reset();
+      updateExercises(); // reset and disable exercise dropdown again
+    }
+  </script>
+</body>
+</html>
